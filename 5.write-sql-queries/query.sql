@@ -19,5 +19,21 @@
 		Select the brand, model, price and color
 */
 
-SELECT brand,model,price,color FROM cars
-WHERE color != 'yellow'
+-- SELECT brand,model,price,color FROM cars
+-- WHERE color != 'yellow'
+
+/*
+	Select the brand, model, color and year
+		find any car where the color includes 'green'
+*/
+
+-- SELECT brand,model,color,year FROM cars
+-- WHERE color NOT LIKE '%green%';
+
+/*
+	Select the brand, model, color and year for cars
+		where the model is 'DB' followed by any other single character
+*/
+
+SELECT brand,model,year,color FROM cars
+WHERE model LIKE 'DB_';
