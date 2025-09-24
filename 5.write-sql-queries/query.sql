@@ -136,10 +136,10 @@
 		and the car has not been sold
 */
 
-SELECT brand, model, color FROM cars
-  WHERE color LIKE '%red%'
-  AND brand != 'Ferrari'
-  AND sold IS FALSE;
+-- SELECT brand, model, color FROM cars
+--   WHERE color LIKE '%red%'
+--   AND brand != 'Ferrari'
+--   AND sold IS FALSE;
 
 
   /*
