@@ -98,7 +98,31 @@
 		and sold is false
 */
 
-SELECT brand, model, color, year, price, sold FROM cars
-	WHERE (color LIKE '%red%'
-	OR year BETWEEN 1960 AND 1969)
-	AND sold IS FALSE;
+-- SELECT brand, model, color, year, price, sold FROM cars
+-- 	WHERE (color LIKE '%red%'
+-- 	OR year BETWEEN 1960 AND 1969)
+-- 	AND sold IS FALSE;
+
+/*
+	Select the brand, model, price and sold columns from cars
+		the brand can be 'Ford', 'Chevrolet' or 'Ferrari'
+		sold must be false
+*/
+
+-- SELECT brand, model, price, sold FROM cars
+-- 	WHERE brand IN ('Ford', 'Chevrolet', 'Ferrari')
+-- 	AND sold IS FALSE;
+
+
+/*
+	Select brand, model, price and sold from cars
+		filter out any cars which are sold
+		show cars where the brand is none of ('Ford', 'Triumph', 'Chevrolet', 'Dodge')
+		or the price is less than $50000
+*/
+
+SELECT brand, model, price, sold FROM cars
+	WHERE (
+		brand NOT IN ('Ford', 'Triumph', 'Chevrolet', 'Dodge')
+		OR price < 50000
+	) AND sold IS FALSE;
