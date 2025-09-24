@@ -121,8 +121,35 @@
 		or the price is less than $50000
 */
 
-SELECT brand, model, price, sold FROM cars
-	WHERE (
-		brand NOT IN ('Ford', 'Triumph', 'Chevrolet', 'Dodge')
-		OR price < 50000
-	) AND sold IS FALSE;
+-- SELECT brand, model, price, sold FROM cars
+-- 	WHERE (
+-- 		brand NOT IN ('Ford', 'Triumph', 'Chevrolet', 'Dodge')
+-- 		OR price < 50000
+-- 	) AND sold IS FALSE;
+
+--- EXERCISES
+
+/*
+	Select brand, model, and color from cars
+		where the color is 'red'
+		and the brand is not 'Ferrari'
+		and the car has not been sold
+*/
+
+SELECT brand, model, color FROM cars
+  WHERE color LIKE '%red%'
+  AND brand != 'Ferrari'
+  AND sold IS FALSE;
+
+
+  /*
+	Select brand, model, and color from cars
+		where the color is not red, blue, or white
+		and the brand is none of: Aston Martin, Bentley or Jaguar
+		and sold is false
+*/
+
+SELECT brand, model, color FROM cars
+  WHERE color NOT IN ('red', 'blue', 'white')
+  AND brand NOT IN ('Aston Martin', 'Bentley', 'Jaguar')
+  AND sold IS FALSE;
