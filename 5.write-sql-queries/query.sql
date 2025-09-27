@@ -215,32 +215,69 @@
 	Use most_expensive as an alias
 */
 
-SELECT MAX(price) AS most_expensive FROM cars
-	WHERE sold IS TRUE;
+-- SELECT MAX(price) AS most_expensive FROM cars
+-- 	WHERE sold IS TRUE;
 
-/*
-	Use the AVG aggregate function to find the average price
-		where the brand is Bentley
+-- /*
+-- 	Use the AVG aggregate function to find the average price
+-- 		where the brand is Bentley
 		
-		We can use FLOOR and CEIL to round the average down or up
-			to the nearest whole number
-*/
+-- 		We can use FLOOR and CEIL to round the average down or up
+-- 			to the nearest whole number
+-- */
 
-SELECT FLOOR(AVG(price)) AS average FROM cars
-	WHERE brand = 'Bentley';
+-- SELECT FLOOR(AVG(price)) AS average FROM cars
+-- 	WHERE brand = 'Bentley';
 
+
+
+-- /*
+-- 	Select the average, minimum and maximum price from cars
+-- 		where sold is true
+-- 	Round the average up to the nearest whole number
+-- 		and use 'avg' as the alias for that result	
+-- */
+
+
+-- SELECT CEIL(AVG(price)) AS avg,
+-- MIN(price) AS min,
+-- MAX(price) AS max
+-- FROM cars
+-- WHERE sold IS TRUE;
 
 
 /*
-	Select the average, minimum and maximum price from cars
-		where sold is true
-	Round the average up to the nearest whole number
-		and use 'avg' as the alias for that result	
+	Select the brand, and a count of the brand from cars
+		alias the count as brand_count
+		group by the brand column
 */
 
+SELECT brand, count(brand) AS brand_count FROM cars
+	GROUP BY brand;
 
-SELECT CEIL(AVG(price)) AS avg,
-MIN(price) AS min,
-MAX(price) AS max
-FROM cars
-WHERE sold IS TRUE;
+
+/*
+	Select the condition, and a count of the condition from cars
+		group by the condition column
+*/
+
+SELECT condition, count(condition) FROM cars
+GROUP BY condition;
+
+
+/*
+	Select:
+		* the brand
+		* a count of the brand
+		* and an average of the price for each brand
+		* round the average down to the nearest number
+		* alias the average as 'AVG' in your output
+	From cars where
+		the car has not been sold
+	Group the table by brand.
+*/
+
+SELECT brand, COUNT(brand),
+FLOOR(AVG(price)) AS AVG FROM cars
+WHERE sold IS FALSE 
+GROUP BY brand
