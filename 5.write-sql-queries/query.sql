@@ -197,14 +197,50 @@
 		where sold is true
 */
 
-SELECT COUNT(*) AS total_sold FROM cars
+-- SELECT COUNT(*) AS total_sold FROM cars
+-- 	WHERE sold IS TRUE;
+
+-- /*
+-- 	Sum the price of cars
+-- 		where sold is true
+-- 	Use the alias total_earnings in your output
+-- */
+
+-- SELECT SUM(price) AS total_earnings FROM cars
+-- 	WHERE sold IS TRUE;
+
+/*
+	Select the maximum retail price
+		where sold is true
+	Use most_expensive as an alias
+*/
+
+SELECT MAX(price) AS most_expensive FROM cars
 	WHERE sold IS TRUE;
 
 /*
-	Sum the price of cars
-		where sold is true
-	Use the alias total_earnings in your output
+	Use the AVG aggregate function to find the average price
+		where the brand is Bentley
+		
+		We can use FLOOR and CEIL to round the average down or up
+			to the nearest whole number
 */
 
-SELECT SUM(price) AS total_earnings FROM cars
-	WHERE sold IS TRUE;
+SELECT FLOOR(AVG(price)) AS average FROM cars
+	WHERE brand = 'Bentley';
+
+
+
+/*
+	Select the average, minimum and maximum price from cars
+		where sold is true
+	Round the average up to the nearest whole number
+		and use 'avg' as the alias for that result	
+*/
+
+
+SELECT CEIL(AVG(price)) AS avg,
+MIN(price) AS min,
+MAX(price) AS max
+FROM cars
+WHERE sold IS TRUE;
