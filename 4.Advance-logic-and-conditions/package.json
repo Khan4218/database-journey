@@ -1,0 +1,28 @@
+{
+  "name": "3.creating-and-joining-tables",
+  "version": "1.0.0",
+  "description": "learning creating and joining tables to get hold on databases",
+  "homepage": "https://github.com/Khan4218/database-journey#readme",
+  "bugs": {
+    "url": "https://github.com/Khan4218/database-journey/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Khan4218/database-journey.git"
+  },
+  "license": "ISC",
+  "author": "MIR AKBAR ALI KHAN",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon --ext js,sql index.js"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.3.10"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
