@@ -32,13 +32,13 @@
 	Where the seller has sold a car for a price greater than
 		any sum of a salesperson's total sales
 */
-SELECT S.name, SC.sold_price
-  FROM staff S
-  JOIN sold_cars SC ON S.id = SC.seller
-WHERE SC.sold_price > ANY (
-SELECT SUM(sold_price) FROM sold_cars
-  GROUP BY seller
-);
+-- SELECT S.name, SC.sold_price
+--   FROM staff S
+--   JOIN sold_cars SC ON S.id = SC.seller
+-- WHERE SC.sold_price > ANY (
+-- SELECT SUM(sold_price) FROM sold_cars
+--   GROUP BY seller
+-- );
 
 
 /*
@@ -47,9 +47,52 @@ SELECT SUM(sold_price) FROM sold_cars
 		than the total sales of any dealership
 */
 
-SELECT brand, model, price FROM cars 
-  WHERE price > ANY (
-    SELECT SUM(sold_price) FROM sold_cars
-    JOIN staff ON staff.id = sold_cars.seller
-      GROUP BY staff.dealership_id
-  );
+-- SELECT brand, model, price FROM cars 
+--   WHERE price > ANY (
+--     SELECT SUM(sold_price) FROM sold_cars
+--     JOIN staff ON staff.id = sold_cars.seller
+--       GROUP BY staff.dealership_id
+--   );
+
+-- ALL
+
+/*
+	Select brand, model, condition and price from cars
+		where the price is less than all cars which are in average condition (3)
+*/
+
+SELECT brand, model, condition, price
+  FROM cars
+WHERE price < ALL (
+  SELECT price FROM cars
+    WHERE condition = 3
+);
+
+
+/*
+	Select the brand, model and year from cars
+	Where the year is before all cars with a brand of 'Ford'
+	Order the results by year
+*/
+
+SELECT brand,model,year FROM cars
+WHERE year < ALL(
+  SELECT year FROM cars 
+  WHERE brand = 'Ford'
+ 
+) ORDER BY year;
+
+
+/*
+	Select the brand, model, city, and price from cars
+		joined with dealerships where cars(dealership_id) matches dealerships(id)
+	where the price is greater than the price of all sold cars
+	order the results by city
+*/
+
+SELECT brand,model,city,price FROM cars C
+JOIN dealerships D ON C.dealership_id = D.id
+WHERE price > ALL (
+  SELECT sold_price FROM sold_cars
+)
+ORDER BY city;
