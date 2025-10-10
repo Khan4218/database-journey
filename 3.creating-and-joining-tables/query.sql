@@ -25,5 +25,42 @@
 			matches with the id in dealerships
 */
 
-SELECT name, role, city, state FROM staff
-  RIGHT JOIN dealerships ON dealership_id = dealerships.id;
+-- SELECT name, role, city, state FROM staff
+--   RIGHT JOIN dealerships ON dealership_id = dealerships.id;
+
+-- SELECT * FROM dealerships;
+/*
+	Select name, role from staff and city, state from dealerships
+	Join the staff table to dealerships using full join
+		match the staff.dealership_id to dealerships.id
+*/
+
+-- FULL JOIN
+-- SELECT name, role, city, state FROM staff
+-- 	FULL JOIN dealerships ON dealership_id = dealerships.id;
+
+---INNER JOIN
+-- SELECT name, role, city, state FROM staff
+-- 	INNER JOIN dealerships ON dealership_id = dealerships.id;
+
+-- SELECT * FROM staff;
+
+/*
+	Select name, role, sold_price from staff
+	Inner join with sold_cars
+		matching seller with staff.id	
+*/
+
+-- SELECT name, role, sold_price FROM staff
+-- 	INNER JOIN sold_cars ON staff.id = seller;
+
+
+  /*
+	Use full join to show the name, role and sold_price
+		from staff
+	Full join with sold_cars
+		matching seller with staff.id	
+*/
+
+SELECT name,role,sold_price FROM staff
+FULL JOIN sold_cars ON seller = staff.id;

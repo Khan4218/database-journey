@@ -22,9 +22,14 @@ import fs from 'fs';
   const alterTables = fs.readFileSync('alter-tables.sql', 'utf-8');
   await db.exec(alterTables);
 
+
   //insert newData Into tables
   const insertNewData = fs.readFileSync('insert-newData.sql', 'utf-8')
   await db.exec(insertNewData)
+
+  //alter constraints
+  const alterConstraints = fs.readFileSync('alter-constraints.sql', 'utf-8')
+  await db.exec(alterConstraints);
 
   // Load the SQL query file
   const query = fs.readFileSync('query.sql', 'utf8');
