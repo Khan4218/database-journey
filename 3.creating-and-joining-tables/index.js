@@ -23,7 +23,8 @@ import fs from 'fs';
   await db.exec(alterTables);
 
   //insert newData Into tables
-  const insertNewData = fs.readFileSync('insert-newData.sql', 'utf-8');
+  const insertNewData = fs.readFileSync('insert-newData.sql', 'utf-8')
+  await db.exec(insertNewData)
 
   // Load the SQL query file
   const query = fs.readFileSync('query.sql', 'utf8');
@@ -31,6 +32,7 @@ import fs from 'fs';
 
   // Run the query from the query file
   const response = await db.query(query);
+
 
   console.clear();
   console.table(response.rows);
