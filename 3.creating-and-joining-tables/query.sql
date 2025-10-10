@@ -135,16 +135,16 @@
 		show sold_cars when we have no record of the seller
 */
 
-SELECT
-	C.brand,
-	C.model,
-	S.name AS seller_name,
-	D.city,
-	TO_CHAR(SC.sold_date, 'DD-MM-YYYY') AS date_of_sale
-FROM sold_cars SC
-	INNER JOIN cars C ON SC.cars_id = C.id
-	LEFT JOIN staff S ON SC.seller = S.id
-	LEFT JOIN dealerships D ON S.dealership_id = D.id;
+-- SELECT
+-- 	C.brand,
+-- 	C.model,
+-- 	S.name AS seller_name,
+-- 	D.city,
+-- 	TO_CHAR(SC.sold_date, 'DD-MM-YYYY') AS date_of_sale
+-- FROM sold_cars SC
+-- 	INNER JOIN cars C ON SC.cars_id = C.id
+-- 	LEFT JOIN staff S ON SC.seller = S.id
+-- 	LEFT JOIN dealerships D ON S.dealership_id = D.id;
 
 
   /*
@@ -158,15 +158,15 @@ FROM sold_cars SC
 		- staff who have the role 'Salesperson'
 */
 
-SELECT
-	S.name,
-	S.role,
-	D.city
-FROM sold_cars SC
-	FULL JOIN staff S ON SC.seller = S.id
-	LEFT JOIN dealerships D ON S.dealership_id = D.id
-WHERE SC.id IS NULL
-	AND S.role = 'Salesperson';
+-- SELECT
+-- 	S.name,
+-- 	S.role,
+-- 	D.city
+-- FROM sold_cars SC
+-- 	FULL JOIN staff S ON SC.seller = S.id
+-- 	LEFT JOIN dealerships D ON S.dealership_id = D.id
+-- WHERE SC.id IS NULL
+-- 	AND S.role = 'Salesperson';
 
 
   /*
@@ -187,12 +187,21 @@ WHERE SC.id IS NULL
 -- Select * from sold_cars
 -- select * from dealerships
 -- select * from cars
-SELECT 
-    D.city,
-    D.state,
-    COUNT(SC.id) AS cars_sold
-FROM dealerships D
-LEFT JOIN cars C ON D.id = C.dealership_id
-LEFT JOIN sold_cars SC ON C.id = SC.cars_id
-GROUP BY D.city, D.state
-ORDER BY cars_sold DESC;
+-- SELECT 
+--     D.city,
+--     D.state,
+--     COUNT(SC.id) AS cars_sold
+-- FROM dealerships D
+-- LEFT JOIN cars C ON D.id = C.dealership_id
+-- LEFT JOIN sold_cars SC ON C.id = SC.cars_id
+-- GROUP BY D.city, D.state
+-- ORDER BY cars_sold DESC;
+
+/*
+	Select the brand, model and price from cars
+	Use a parameter value of $1
+	Pass the user input in index.js
+*/
+
+SELECT brand, model, price FROM cars
+  WHERE brand = $1;

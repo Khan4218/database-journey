@@ -1,8 +1,11 @@
 import { PGlite } from '@electric-sql/pglite';
 import fs from 'fs';
 
+const userInput = `Ford`;
+
 (async () => {
   const db = new PGlite();
+
 
   // Set up the DB files
   const createTables = fs.readFileSync('create-tables.sql', 'utf8');
@@ -32,11 +35,14 @@ import fs from 'fs';
   await db.exec(alterConstraints);
 
   // Load the SQL query file
-  const query = fs.readFileSync('query.sql', 'utf8');
+  let query = fs.readFileSync('query.sql', 'utf8');
+
+  // Replace placeholder with user input
+  // query = query.replace('<<BRAND>>', userInput);
 
 
   // Run the query from the query file
-  const response = await db.query(query);
+  const response = await db.query(query, [userInput]);
 
 
   console.clear();
