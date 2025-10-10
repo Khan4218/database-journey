@@ -1,7 +1,7 @@
 import { PGlite } from '@electric-sql/pglite';
 import fs from 'fs';
 
-const userInput = `Ford`;
+
 
 (async () => {
   const db = new PGlite();
@@ -42,7 +42,7 @@ const userInput = `Ford`;
 
 
   // Run the query from the query file
-  const response = await db.query(query, [userInput]);
+  const response = await db.query(query);
 
 
   console.clear();
