@@ -1,7 +1,7 @@
 # 🗄️ Database Journey
 
-Welcome to my **Database Journey** — a hands-on exploration of databases and SQL fundamentals.  
-This repository tracks my progress as I learn how to design, query, and manage data effectively using real examples and practice exercises.
+Welcome to my Database Journey — a complete hands-on exploration of SQL and database fundamentals.
+I recently completed the “Intro to SQL” course by Scrimba, gaining practical experience in writing, analyzing, and optimizing SQL queries.
 
 ---
 
@@ -16,6 +16,7 @@ Each commit represents a focused step in my learning process — from writing si
 - Filtering, sorting, and aggregating data with real query examples  
 - Understanding how relational databases organize and store information  
 - Writing clean, well-commented SQL for readability and reusability  
+- Using CASE, JOIN, and aggregate functions to solve real-world problems
 
 ---
 
@@ -30,6 +31,23 @@ It demonstrates how I approach learning by building, experimenting, and improvin
 - **SQL** — Core query language for data manipulation  
 - **PostgreSQL / MySQL** (conceptual focus)  
 - **VS Code** for writing and testing queries  
+
+## 🎓 Certification
+Successfully completed the **Intro to SQL** course from **Scrimba**  
+📜 Duration: 3.8 hours | 48 lessons  
+🗓️ Completed on: 11 October 2025  
+
+![Certificate of Completion](./5.certification/AkbarKhanCertification.png)
+
+---
+
+## 🚀 Next Steps
+Now that I’ve built a strong foundation in SQL, I’m moving forward to:
+- Integrate SQL with **Node.js (Express)** for backend projects  
+- Explore **NoSQL databases like MongoDB**  
+- Work on **data-driven full-stack applications**
+
+---
 
 ---
 
