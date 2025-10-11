@@ -101,10 +101,10 @@
 	Select colors of car where there has been a sale of that color car
 */
 -- SELECT * FROM sold_cars;
-SELECT DISTINCT color FROM cars
-WHERE EXISTS (
-	SELECT 1 FROM sold_cars WHERE cars_id = cars.id
-);
+-- SELECT DISTINCT color FROM cars
+-- WHERE EXISTS (
+-- 	SELECT 1 FROM sold_cars WHERE cars_id = cars.id
+-- );
 
 
 /*
@@ -115,11 +115,11 @@ WHERE EXISTS (
 		and alias it as 'est'
 */
 
-SELECT city, state, TO_CHAR(established, 'YYYY-MM-DD') AS est
-  FROM dealerships D
-  WHERE NOT EXISTS (
-    SELECT 1 FROM cars WHERE dealership_id = D.id
-  );
+-- SELECT city, state, TO_CHAR(established, 'YYYY-MM-DD') AS est
+--   FROM dealerships D
+--   WHERE NOT EXISTS (
+--     SELECT 1 FROM cars WHERE dealership_id = D.id
+--   );
 
 	/*
 	Select the city and state of dealerships
@@ -129,12 +129,70 @@ SELECT city, state, TO_CHAR(established, 'YYYY-MM-DD') AS est
 	and then check for car price in your subquery
 */
 
-SELECT city, state
-FROM dealerships D
-WHERE EXISTS (
-SELECT 1 FROM cars
-WHERE cars.dealership_id = D.id
-AND price > 50000
-)AND EXISTS (
-    SELECT 1 FROM sold_cars SC where seller = s.id
-  );
+-- SELECT city, state
+-- FROM dealerships D
+-- WHERE EXISTS (
+-- SELECT 1 FROM cars
+-- WHERE cars.dealership_id = D.id
+-- AND price > 50000
+-- )AND EXISTS (
+--     SELECT 1 FROM sold_cars SC where seller = s.id
+--   );
+
+-- CASE 
+
+/*
+	Select the brand, model, condition from cars
+		Based on the car's condition level, output the following:
+			* 'Excellent' when 4 or greater
+			* 'Fair' when 3 or greater
+			* 'Poor' when 1 or greater
+			* 'Wrecked' for all other cases
+		Aliased as 'condition label'
+	From cars
+	Order by the condition in descending order
+*/
+
+-- SELECT brand,model,condition,
+-- CASE 
+-- WHEN condition >= 4 THEN 'Excellent'
+-- WHEN condition >= 3 THEN 'Fair'
+-- WHEN condition >=1 THEN 'Poor'
+-- ELSE 'Wrecked'
+-- END AS condition_label
+-- FROM cars
+-- ORDER BY condition DESC;
+
+/*
+	Rodney is assigning bonuses for his staff on the following terms:
+		- Salespeople who have made more than $100,000 in sales receive $10,000
+		- Salespeople who have made more than $75,000 in sales receive $5,000
+		- Every other staff member gets a bonus of $1,000
+	
+	Select from the sold_cars table, joined with staff where
+		sold_cars(seller) = staff(id)
+	Show all staff, even if they have made no sales
+	
+	Select:
+		* staff(name)
+		* staff(role)
+		* staff(dealership_id)
+		* the sum of the staff member's sales - alias as total_sales
+	
+	Use CASE to select the correct value, as defined above, aliased as bonus
+	
+	Use GROUP BY to format the output, and ORDER BY bonus then dealership_id
+*/
+SELECT S.name,
+S.role,
+S.dealership_id,
+SUM(sold_price) AS total_sales,
+CASE
+WHEN role = 'Salesperson' AND SUM(sold_price) >100000 THEN 10000
+WHEN role = 'Salesperson' AND SUM(sold_price) > 75000 THEN 5000
+ELSE 1000
+END AS bonus
+FROM sold_cars SC
+RIGHT JOIN staff S ON SC.seller = S.id
+GROUP BY name,role,dealership_id
+ORDER BY bonus,dealership_id;
