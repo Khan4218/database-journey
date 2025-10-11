@@ -183,16 +183,38 @@
 	
 	Use GROUP BY to format the output, and ORDER BY bonus then dealership_id
 */
-SELECT S.name,
-S.role,
-S.dealership_id,
-SUM(sold_price) AS total_sales,
-CASE
-WHEN role = 'Salesperson' AND SUM(sold_price) >100000 THEN 10000
-WHEN role = 'Salesperson' AND SUM(sold_price) > 75000 THEN 5000
-ELSE 1000
-END AS bonus
-FROM sold_cars SC
-RIGHT JOIN staff S ON SC.seller = S.id
-GROUP BY name,role,dealership_id
-ORDER BY bonus,dealership_id;
+-- SELECT S.name,
+-- S.role,
+-- S.dealership_id,
+-- SUM(sold_price) AS total_sales,
+-- CASE
+-- WHEN role = 'Salesperson' AND SUM(sold_price) >100000 THEN 10000
+-- WHEN role = 'Salesperson' AND SUM(sold_price) > 75000 THEN 5000
+-- ELSE 1000
+-- END AS bonus
+-- FROM sold_cars SC
+-- RIGHT JOIN staff S ON SC.seller = S.id
+-- GROUP BY name,role,dealership_id
+-- ORDER BY bonus,dealership_id;
+
+/*
+	Select brand, model, condition, year and price from cars
+	Only select cars which have not been sold, and:
+		* If the year is 1960 or earlier, the condition must be 4 or greater
+		* If the year is 1970 or earlier, the condition must be 3 or greater
+		* If the year is 1980 or earlier, the condition must be 2 or greater
+		* If the year is 1990 or earlier, the condition must be 1 or greater
+		* and any other cars (ELSE TRUE)
+	Order by year then condition
+*/
+
+SELECT brand,model,condition,year,price FROM cars
+WHERE sold IS FALSE 
+AND CASE 
+WHEN year <= 1960 THEN condition >= 4
+WHEN year <= 1970 THEN condition >= 3
+WHEN year <= 1980 THEN condition >= 2
+WHEN year <= 1990 THEN condition >= 1
+ELSE TRUE
+END
+ORDER BY year,condition;
