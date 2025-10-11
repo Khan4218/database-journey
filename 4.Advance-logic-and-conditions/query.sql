@@ -208,13 +208,20 @@
 	Order by year then condition
 */
 
-SELECT brand,model,condition,year,price FROM cars
-WHERE sold IS FALSE 
-AND CASE 
-WHEN year <= 1960 THEN condition >= 4
-WHEN year <= 1970 THEN condition >= 3
-WHEN year <= 1980 THEN condition >= 2
-WHEN year <= 1990 THEN condition >= 1
-ELSE TRUE
-END
-ORDER BY year,condition;
+-- SELECT brand,model,condition,year,price FROM cars
+-- WHERE sold IS FALSE 
+-- AND CASE 
+-- WHEN year <= 1960 THEN condition >= 4
+-- WHEN year <= 1970 THEN condition >= 3
+-- WHEN year <= 1980 THEN condition >= 2
+-- WHEN year <= 1990 THEN condition >= 1
+-- ELSE TRUE
+-- END
+-- ORDER BY year,condition;
+
+-- SELECT brand, model, price FROM cars WHERE brand = 'Aston Martin' ORDER BY id;
+SELECT brand, model, city, dealership_id AS d_id, price
+	FROM cars
+	INNER JOIN dealerships ON dealerships.id = cars.dealership_id
+ORDER BY city;
+

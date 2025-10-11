@@ -34,8 +34,13 @@ import fs from 'fs';
   const alterConstraints = fs.readFileSync('alter-constraints.sql', 'utf-8')
   await db.exec(alterConstraints);
 
+  //cars update 
+  const carsUpdate = fs.readFileSync('cars-update.sql', 'utf-8');
+  await db.exec(carsUpdate);
+
   // Load the SQL query file
   let query = fs.readFileSync('query.sql', 'utf8');
+
 
   // Replace placeholder with user input
   // query = query.replace('<<BRAND>>', userInput);
